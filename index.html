@@ -41,7 +41,7 @@
 
         <!--fim cabeçario-->
         <div class="div_botões">
-            <input style="text-align: end; width:98%; height: 40px;  " disabled type="text" name="" id="resultado">
+            <input class="resut" disabled type="text" name="" id="resultado">
             <div class="caixa_botões">
                 <button onclick="apagar()" class="botões"> AC </button>
                 <div>
@@ -83,7 +83,7 @@
                     </button>
                 </div>
                 <div>
-                    <button class="botões">
+                    <button onclick="inserir('*')" class="botões">
                         <img src="img/icons8-multiplicação-50.png" alt="">
                     </button>
                 </div>
@@ -103,7 +103,7 @@
                     </button>
                 </div>
                 <div>
-                    <button class="botões">
+                    <button onclick=" inserir('-')  " class="botões">
                         <img src="img/icons8-subtração-26.png" alt="">
                     </button>
                 </div>
@@ -123,7 +123,7 @@
                     </button>
                 </div>
                 <div>
-                    <button onclick="inserir('+') , adicao() " class="botões">
+                    <button onclick="inserir('+')" class="botões">
                         <img src="img/icons8-adição-50.png" alt="">
                     </button>
                 </div>
@@ -143,7 +143,7 @@
                     </button>
                 </div>
                 <div>
-                    <button onclick="contar()" style="color: white ; background-color: orangered; " class="botões">
+                    <button onclick="valores()" style="color: white ; background-color: orangered; " class="botões">
                         =
                     </button>
                 </div>
