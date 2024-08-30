@@ -1,0 +1,62 @@
+.corpo_calculadora {
+    background-color: black;
+    width: 40.0rem;
+    height: 80rem;
+    margin: auto;
+    margin-top: 5rem;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+}
+
+.cabeçario {
+    display: flex;
+    justify-content: space-between;
+}
+
+.aba_calculadora {
+    color: aliceblue;
+}
+
+.aba_conversor {
+    color: aliceblue;
+}
+
+.icone {
+    color: aliceblue;
+}
+
+
+/* resultado */
+.resultado {
+    width: auto;
+    height: 40px;
+    color: aliceblue;
+    text-align: end;
+    font-size: 3.8rem;
+    padding-right: 2rem;
+}
+
+
+/* botões */
+
+.div_botões {
+    margin-top: 200px;
+}
+
+.caixa_botões {
+    padding-left: 4px;
+    margin-top: 3.5rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+}
+
+.botões {
+    display: inline-block;
+    width: 8.0rem;
+    height: 8.0rem;
+    border-radius: 8px;
+    font-size: 2.4rem;
+}
