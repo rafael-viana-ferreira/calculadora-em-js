@@ -1,96 +1,114 @@
 
 var valor, conteudo;
-var separar, memory, form
+var separar, form
 
-/*function inserir(caracteres) {
-    conteudo = document.getElementById("resultado").innerHTML;
-    document.getElementById("resultado").value += conteudo + caracteres;
-}*/
 
 function inserir(caracteres) {
-    conteudo = document.getElementById("resultado").innerHTML;
-    form = document.getElementById("resultado").value += conteudo + caracteres;
-    verificação(form)
-}
-
-function verificação(verif) {
-    str = verif
-    let form, exibir
-    form = str.split("")
-    console.log(form)
-    if (form[0] == "-") {
-        let valor
-        let lixo
-        valor = form[0] + form[1]
-        form[1] = valor
-        lixo = form.shift()
-        let formatacaoFinal = form.toString().replaceAll(",", "")
-        exibir = formatacaoFinal.split("+")
-        console.log(exibir)
-    }
-
+    conteudo = document.getElementById("caixa_de_exibição").value;
+    form = document.getElementById("caixa_de_exibição").value = conteudo + caracteres;
 }
 
 function apagarUltimoElemento() {
-    let cont = document.getElementById("resultado").value;
+    let cont = document.getElementById("caixa_de_exibição").value;
     let num = cont.split("");
     let lixo = num.pop();
     let exibir = num.toString();
     let formatacao = exibir.replaceAll(",", "");
-    document.getElementById("resultado").value = formatacao;
+    document.getElementById("caixa_de_exibição").value = formatacao;
 }
 
 function apagar() {
-    document.getElementById("resultado").value = "";
+    document.getElementById("caixa_de_exibição").value = "";
+    document.getElementById("resultado").value = ""
 }
 
-
-/*function valores() {
-    let valor = 0
-    let memory = document.getElementById("resultado").value;
-    let format = memory.split("+")
-    for (let i of format) {
-        valor += Number(i)
-    }
-
-    document.getElementById("resultado").value = valor
-
-} */
-
+function historico() {
+    let memory;
+    memory = document.getElementById("resultado").value;
+    document.getElementById("caixa_de_exibição").value = memory
+}
 
 function valores() {
-    let valor = 0
-    let memory = str
-    let verificação = memory.split("")
-    console.log(verificação)
-    for (let i of verificação) {
-        console.log(i)
-        if (i == "+") {
-            let operadoradi = "+"
-            if (operadoradi == "+") {
-                let format = memory.split("+")
-                for (let i of format) {
-                    valor += Number(i)
-                    document.getElementById("resultado").value = valor
-                }
-            }
-        }
-        else if (i == "-") {
-            let operadorsub = "-"
-            if (operadorsub == "-") {
-                let format = memory.split("-")
-                valor = format[0] - format[1]
-                document.getElementById("resultado").value = valor
-            }
-        }
-        else if (i == "*") {
-            let operadormut = "*"
-            if (operadormut == "*") {
-                let format = memory.split("*")
-                valor = format[0] * format[1]
-                document.getElementById("resultado").value = valor
-            }
-        }
-    }
+    let conteudo, verificacao, valores;
+    conteudo = document.getElementById("caixa_de_exibição").value;
+    verificacao = conteudo.replaceAll("+", ",+,").replaceAll("*", ",*,").replaceAll("-", ",-,").replaceAll("/", ",/,")
+    valores = verificacao.split(",")
+
+    trabalharComOsValores(valores)
 }
+
+
+function trabalharComOsValores(valores) {
+    let val = valores
+
+    if (val[0] == "-") {
+        val[2] = val[0] + val[1]
+        val[2] = Number(val[2])
+        val.shift()
+        val.shift()
+        console.log(val)
+    }
+    else if ((val[0] == "") && (val[1] == "-")) {
+        val[2] = val[1] + val[2]
+        val.shift()
+        val.shift()
+    }
+    else if ((val[0] == "/") || (val[0] == "*")) {
+        val.shift()
+        val.shift()
+        document.getElementById("resultado").value = val
+    }
+
+
+    else {
+        val.toString()
+        document.getElementById("resultado").value = val
+
+    }
+
+    pilhaDeValores(val)
+
+}
+
+function pilhaDeValores(val) {
+    let resultado = val
+    let soma = 1
+
+
+    for (let i = 0; i < resultado.length; i++) {
+
+        if (resultado[i] == "*") {
+            resultado[i + 1] = resultado[i - 1] * resultado[i + 1]
+            soma = resultado[i + 1]
+            document.getElementById("resultado").value = soma;
+        }
+        else if (resultado[i] == "/") {
+            resultado[i + 1] = resultado[i - 1] / resultado[i + 1]
+            soma = resultado[i + 1]
+            document.getElementById("resultado").value = soma;
+        }
+        else if (resultado[i] == "+") {
+            resultado[i + 1] = Number(resultado[i - 1]) + Number(resultado[i + 1])
+            soma = resultado[i + 1]
+            document.getElementById("resultado").value = soma;
+        }
+        else if (resultado[i] == "-") {
+            resultado[i + 1] = resultado[i - 1] - resultado[i + 1]
+            soma = resultado[i + 1]
+            document.getElementById("resultado").value = soma
+        }
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
 

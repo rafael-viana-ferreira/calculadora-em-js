@@ -41,7 +41,13 @@
 
         <!--fim cabeçario-->
         <div class="div_botões">
-            <input class="resut" disabled type="text" name="" id="resultado">
+
+            <div class="exição">
+                <input id="caixa_de_exibição" class="resut" type="text" disabled>
+                <input onclick="historico()" id="resultado" type="text" class="resut" , disabled>
+            </div>
+            <p class="paragrafo" id="resutado"> </p>
+
             <div class="caixa_botões">
                 <button onclick="apagar()" class="botões"> AC </button>
                 <div>
@@ -63,7 +69,7 @@
                     </button>
                 </div>
                 <div>
-                    <button value="/" class="botões">
+                    <button onclick="inserir('/')" class="botões">
                         <img src="img/icons8-dividisão-40.png" alt="">
                     </button>
                 </div>
@@ -104,7 +110,7 @@
                 </div>
                 <div>
                     <button onclick=" inserir('-')  " class="botões">
-                        <img src="img/icons8-subtração-26.png" alt="">
+                        <img src="img/icons8-subtração-26.png">
                     </button>
                 </div>
                 <div>
