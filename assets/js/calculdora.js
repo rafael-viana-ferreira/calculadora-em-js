@@ -1,6 +1,7 @@
 
 var valor, conteudo;
 var separar, form
+var memory
 
 
 function inserir(caracteres) {
@@ -40,23 +41,26 @@ function valores() {
 
 function trabalharComOsValores(valores) {
     let val = valores
+    let memory
 
     if (val[0] == "-") {
         val[2] = val[0] + val[1]
         val[2] = Number(val[2])
         val.shift()
         val.shift()
-        console.log(val)
+
     }
     else if ((val[0] == "") && (val[1] == "-")) {
         val[2] = val[1] + val[2]
         val.shift()
         val.shift()
+
     }
     else if ((val[0] == "/") || (val[0] == "*")) {
         val.shift()
         val.shift()
         document.getElementById("resultado").value = val
+
     }
 
 
@@ -66,47 +70,65 @@ function trabalharComOsValores(valores) {
 
     }
 
-    pilhaDeValores(val)
-
+    multiplicaçãoEdivisão(val)
 }
 
-function pilhaDeValores(val) {
+
+function multiplicaçãoEdivisão(val) {
     let resultado = val
-    let soma = 1
-
-
+    let newarray
     for (let i = 0; i < resultado.length; i++) {
-
         if (resultado[i] == "*") {
             resultado[i + 1] = resultado[i - 1] * resultado[i + 1]
-            soma = resultado[i + 1]
-            document.getElementById("resultado").value = soma;
+            resultado[i] = ""
+            resultado[i - 1] = ""
+            document.getElementById("resultado").value = resultado[i + 1]
         }
         else if (resultado[i] == "/") {
             resultado[i + 1] = resultado[i - 1] / resultado[i + 1]
-            soma = resultado[i + 1]
-            document.getElementById("resultado").value = soma;
+            resultado[i] = ""
+            resultado[i - 1] = ""
+            document.getElementById("resultado").value = resultado[i + 1]
         }
-        else if (resultado[i] == "+") {
-            resultado[i + 1] = Number(resultado[i - 1]) + Number(resultado[i + 1])
-            soma = resultado[i + 1]
-            document.getElementById("resultado").value = soma;
-        }
-        else if (resultado[i] == "-") {
-            resultado[i + 1] = resultado[i - 1] - resultado[i + 1]
-            soma = resultado[i + 1]
-            document.getElementById("resultado").value = soma
+        else {
+            adicaoEsubtração(resultado)
         }
 
-
+        newarray = resultado.toString().replaceAll(",", "")
     }
+}
 
+function adicaoEsubtração(resultado, newarray) {
+    let res = resultado
+    let form = newarray
+    let valoresRes = res.toString().replaceAll(",", "").replaceAll("+", ",+,").replaceAll("-", ",-,")
+    valoresRes = valoresRes.split(",")
+    let soma = 0
+
+    for (let i = 0; i < valoresRes.length; i++) {
+        if (valoresRes[i] == "+") {
+            valoresRes[i + 1] = Number(valoresRes[i - 1]) + Number(valoresRes[i + 1])
+            soma = valoresRes[i + 1]
+            document.getElementById("resultado").value = soma;
+        }
+        else if (valoresRes[i] == "-") {
+            valoresRes[i + 1] = Number(valoresRes[i - 1]) - Number(valoresRes[i + 1])
+            soma = valoresRes[i + 1]
+            document.getElementById("resultado").value = soma;
+        }
+    }
 }
 
 
 
 
 
+
+
+
+
+
+// calculadora em javascript sem a utilização do metodo eval() 
 
 
 
