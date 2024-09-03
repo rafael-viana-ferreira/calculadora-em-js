@@ -12,14 +12,17 @@
 .cabeçario {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .aba_calculadora {
     color: aliceblue;
+    font-size: 20px;
 }
 
 .aba_conversor {
     color: aliceblue;
+    font-size: 20px;
 }
 
 .icone {

@@ -20,13 +20,15 @@ function apagarUltimoElemento() {
 
 function apagar() {
     document.getElementById("caixa_de_exibição").value = "";
-    document.getElementById("resultado").value = ""
+    document.getElementById("resultado").value = "";
 }
 
 function historico() {
     let memory;
-    memory = document.getElementById("resultado").value;
+    memory = document.getElementById("resultado").value
     document.getElementById("caixa_de_exibição").value = memory
+    document.getElementById("resultado").value = ""
+
 }
 
 function valores() {
