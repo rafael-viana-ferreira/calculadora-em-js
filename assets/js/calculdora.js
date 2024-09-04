@@ -45,12 +45,7 @@ function apagar() {
 function historico() {
     let memory;
     memory = document.getElementById("resultado").innerHTML;
-
-    if (memory == 0) {
-        document.getElementById("caixa_de_exibição").innerHTML = ""
-    }
-
-    else if (memory == "Não é possivel dividir por 0") {
+    if (memory == "Não é possivel dividir por 0") {
         document.getElementById("caixa_de_exibição").innerHTML = ""
         document.getElementById("resultado").innerHTML = 0
     }
@@ -118,7 +113,11 @@ function multiplicaçãoEdivisão(val) {
             document.getElementById("resultado").innerHTML = resultado[i + 1]
         }
         else if (resultado[i] == "/") {
-            if (resultado[i + 1] == "0") {
+
+            if (((resultado[i - 1] == 0) || (resultado[i - 1] == "0")) || (resultado[i + 1] == 0) || (resultado[i + 1] == "0")) {
+                document.getElementById("resultado").innerHTML = "Não é possivel dividir por 0"
+            }
+            else if ((resultado[i + 1] == 0) || (resultado[i + 1] == "0")) {
                 document.getElementById("resultado").innerHTML = "Não é possivel dividir por 0"
             }
             else {
@@ -126,11 +125,12 @@ function multiplicaçãoEdivisão(val) {
                 resultado[i] = ""
                 resultado[i - 1] = ""
                 document.getElementById("resultado").innerHTML = resultado[i + 1]
-                adicaoEsubtração(resultado)
             }
 
         }
-
+        else {
+            adicaoEsubtração(resultado)
+        }
 
         newarray = resultado.toString().replaceAll(",", "")
     }
