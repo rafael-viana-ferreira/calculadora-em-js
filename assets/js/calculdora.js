@@ -49,9 +49,14 @@ function apagar() {
 function historico() {
     let memory;
     memory = document.getElementById("resultado").innerHTML;
-    document.getElementById("caixa_de_exibição").innerHTML = memory
-    document.getElementById("resultado").innerHTML = "0";
-
+    if (memory == "Não é possivel dividir por 0") {
+        document.getElementById("caixa_de_exibição").innerHTML = ""
+        document.getElementById("resultado").innerHTML = "0"
+    }
+    else {
+        document.getElementById("caixa_de_exibição").innerHTML = memory
+        document.getElementById("resultado").innerHTML = "0";
+    }
 }
 
 function valores() {
