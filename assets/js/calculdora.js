@@ -1,8 +1,4 @@
 
-var valor, conteudo;
-var separar, form
-var memory
-
 
 function inserir(caracteres) {
     conteudo = document.getElementById("caixa_de_exibição").innerHTML;
@@ -51,11 +47,14 @@ function historico() {
     memory = document.getElementById("resultado").innerHTML;
     if (memory == "Não é possivel dividir por 0") {
         document.getElementById("caixa_de_exibição").innerHTML = ""
-        document.getElementById("resultado").innerHTML = "0"
+        document.getElementById("resultado").innerHTML = 0
+    }
+    else if (memory == NaN) {
+        document.getElementById("resulatdo").innerText = "Não é possivel dividir por 0"
     }
     else {
         document.getElementById("caixa_de_exibição").innerHTML = memory
-        document.getElementById("resultado").innerHTML = "0";
+        document.getElementById("resultado").innerHTML = 0;
     }
 }
 
@@ -114,8 +113,7 @@ function multiplicaçãoEdivisão(val) {
             document.getElementById("resultado").innerHTML = resultado[i + 1]
         }
         else if (resultado[i] == "/") {
-
-            if (((resultado[i - 1] == 0) || (resultado[i - 1] == "0")) && (resultado[i + 1] == 0) || (resultado[i + 1] == "0")) {
+            if (resultado[i + 1] == "0") {
                 document.getElementById("resultado").innerHTML = "Não é possivel dividir por 0"
             }
             else {
@@ -123,12 +121,11 @@ function multiplicaçãoEdivisão(val) {
                 resultado[i] = ""
                 resultado[i - 1] = ""
                 document.getElementById("resultado").innerHTML = resultado[i + 1]
+                adicaoEsubtração(resultado)
             }
 
         }
-        else {
-            adicaoEsubtração(resultado)
-        }
+
 
         newarray = resultado.toString().replaceAll(",", "")
     }
