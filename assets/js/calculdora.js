@@ -45,7 +45,12 @@ function apagar() {
 function historico() {
     let memory;
     memory = document.getElementById("resultado").innerHTML;
-    if (memory == "Não é possivel dividir por 0") {
+
+    if (memory == 0) {
+        document.getElementById("caixa_de_exibição").innerHTML = ""
+    }
+
+    else if (memory == "Não é possivel dividir por 0") {
         document.getElementById("caixa_de_exibição").innerHTML = ""
         document.getElementById("resultado").innerHTML = 0
     }
