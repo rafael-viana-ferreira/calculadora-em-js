@@ -5,38 +5,60 @@ var memory
 
 
 function inserir(caracteres) {
-    conteudo = document.getElementById("caixa_de_exibição").value;
-    form = document.getElementById("caixa_de_exibição").value = conteudo + caracteres;
+    conteudo = document.getElementById("caixa_de_exibição").innerHTML;
+    form = document.getElementById("caixa_de_exibição").innerHTML = conteudo + caracteres;
+
+    let numeroCaracteres = document.getElementById("caixa_de_exibição").innerHTML;
+
+    if (numeroCaracteres.length > 8) {
+        document.getElementById("caixa_de_exibição").style.fontSize = "18px";
+    }
+    else {
+        document.getElementById("caixa_de_exibição").style.fontSize = "24px"
+    }
+
+    if (numeroCaracteres.length > 0) {
+        document.getElementById("botao_apagar").innerHTML = "C"
+    }
+    if (numeroCaracteres == 0) {
+        document.getElementById("botao_apagar").innerHTML = "AC"
+    }
 }
 
+
+
 function apagarUltimoElemento() {
-    let cont = document.getElementById("caixa_de_exibição").value;
+    let cont = document.getElementById("caixa_de_exibição").innerHTML;
     let num = cont.split("");
     let lixo = num.pop();
     let exibir = num.toString();
     let formatacao = exibir.replaceAll(",", "");
-    document.getElementById("caixa_de_exibição").value = formatacao;
+    document.getElementById("caixa_de_exibição").innerHTML = formatacao;
+    if (formatacao == 0) {
+        document.getElementById("botao_apagar").innerHTML = "AC"
+    }
+
 }
 
 function apagar() {
-    document.getElementById("caixa_de_exibição").value = "";
-    document.getElementById("resultado").value = "";
+    document.getElementById("caixa_de_exibição").innerHTML = "";
+    document.getElementById("resultado").innerHTML = "0";
+    document.getElementById("botao_apagar").innerHTML = "AC"
 }
 
 function historico() {
     let memory;
-    memory = document.getElementById("resultado").value
-    document.getElementById("caixa_de_exibição").value = memory
-    document.getElementById("resultado").value = ""
+    memory = document.getElementById("resultado").innerHTML;
+    document.getElementById("caixa_de_exibição").innerHTML = memory
+    document.getElementById("resultado").innerHTML = "0";
 
 }
 
 function valores() {
-    let conteudo, verificacao, valores;
-    conteudo = document.getElementById("caixa_de_exibição").value;
+    let conteudo, verificacao, valores, caracter;
+    conteudo = document.getElementById("caixa_de_exibição").innerHTML;
     verificacao = conteudo.replaceAll("+", ",+,").replaceAll("*", ",*,").replaceAll("-", ",-,").replaceAll("/", ",/,")
     valores = verificacao.split(",")
-
     trabalharComOsValores(valores)
 }
 
@@ -61,14 +83,14 @@ function trabalharComOsValores(valores) {
     else if ((val[0] == "/") || (val[0] == "*")) {
         val.shift()
         val.shift()
-        document.getElementById("resultado").value = val
+        document.getElementById("resultado").innerHTML = val
 
     }
 
 
     else {
         val.toString()
-        document.getElementById("resultado").value = val
+        document.getElementById("resultado").innerHTML = val
 
     }
 
@@ -84,13 +106,20 @@ function multiplicaçãoEdivisão(val) {
             resultado[i + 1] = resultado[i - 1] * resultado[i + 1]
             resultado[i] = ""
             resultado[i - 1] = ""
-            document.getElementById("resultado").value = resultado[i + 1]
+            document.getElementById("resultado").innerHTML = resultado[i + 1]
         }
         else if (resultado[i] == "/") {
-            resultado[i + 1] = resultado[i - 1] / resultado[i + 1]
-            resultado[i] = ""
-            resultado[i - 1] = ""
-            document.getElementById("resultado").value = resultado[i + 1]
+
+            if (((resultado[i - 1] == 0) || (resultado[i - 1] == "0")) && (resultado[i + 1] == 0) || (resultado[i + 1] == "0")) {
+                document.getElementById("resultado").innerHTML = "Não é possivel dividir por 0"
+            }
+            else {
+                resultado[i + 1] = resultado[i - 1] / resultado[i + 1]
+                resultado[i] = ""
+                resultado[i - 1] = ""
+                document.getElementById("resultado").innerHTML = resultado[i + 1]
+            }
+
         }
         else {
             adicaoEsubtração(resultado)
@@ -111,12 +140,12 @@ function adicaoEsubtração(resultado, newarray) {
         if (valoresRes[i] == "+") {
             valoresRes[i + 1] = Number(valoresRes[i - 1]) + Number(valoresRes[i + 1])
             soma = valoresRes[i + 1]
-            document.getElementById("resultado").value = soma;
+            document.getElementById("resultado").innerHTML = soma;
         }
         else if (valoresRes[i] == "-") {
             valoresRes[i + 1] = Number(valoresRes[i - 1]) - Number(valoresRes[i + 1])
             soma = valoresRes[i + 1]
-            document.getElementById("resultado").value = soma;
+            document.getElementById("resultado").innerHTML = soma;
         }
     }
 }
