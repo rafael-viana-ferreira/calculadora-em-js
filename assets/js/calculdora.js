@@ -20,15 +20,6 @@ function inserir(caracteres) {
         document.getElementById("botao_apagar").innerHTML = "AC"
     }
 
-
-    let tratarErros = document.getElementById("resultado").value
-    erroTrue = Number.isNaN(tratarErros)
-
-
-    if (erroTrue == true) {
-        document.getElementById("resultado").innerHTML = "erroooo"
-    }
-
 }
 
 
@@ -138,14 +129,13 @@ function multiplicaçãoEdivisão(val) {
         }
         else if (resultado[i] == "/") {
 
-            if (((resultado[i - 1] == 0) || (resultado[i - 1] == "0")) || (resultado[i + 1] == 0) || (resultado[i + 1] == "0")) {
+            if ((resultado[i + 1] == 0) || (resultado[i + 1] == "0")) {
                 document.getElementById("resultado").innerHTML = "Não é possivel dividir por 0"
             }
             else if ((resultado[i + 1] == 0) || (resultado[i + 1] == "0.0.0")) {
                 document.getElementById("resultado").innerHTML = "Não é possivel dividir por 0"
             }
             else {
-
                 let pos1 = Number(resultado[i - 1])
                 let pos2 = Number(resultado[i + 1])
                 let conversão1, conversão2
@@ -153,23 +143,30 @@ function multiplicaçãoEdivisão(val) {
                 conversão2 = String(pos2)
 
                 if (conversão1 == "NaN") {
-                    resultado[i - 1] = "1"
+                    resultado[i - 1] = 1
+                    document.getElementById("caixa_de_exibição").innerHTML = 0
+                    document.getElementById("resultado").innerHTML = 0
                 }
                 else if (conversão2 == "NaN") {
                     resultado[i + 1] = 1
+                    document.getElementById("caixa_de_exibição").innerHTML = 0
+                    document.getElementById("resultado").innerText = 0
                 }
-
-                resultado[i + 1] = resultado[i - 1] / resultado[i + 1]
-                resultado[i] = ""
-                resultado[i - 1] = ""
-                document.getElementById("resultado").innerHTML = resultado[i + 1]
+                else {
+                    resultado[i + 1] = resultado[i - 1] / resultado[i + 1]
+                    resultado[i] = ""
+                    resultado[i - 1] = ""
+                    document.getElementById("resultado").innerHTML = resultado[i + 1]
+                }
             }
         }
-        else {
-            adicaoEsubtração(resultado)
-        }
 
-        newarray = resultado.toString().replaceAll(",", "")
+        // newarray = resultado.toString().replaceAll(",", "")
+
+        adicaoEsubtração(resultado)
+
+
+
     }
 }
 
