@@ -190,10 +190,10 @@ function adicaoEsubtração(resultado, newarray) {
             conversão2 = String(pos2)
 
             if (conversão1 == "NaN") {
-                valoresRes[i - 1] = "1"
+                valoresRes[i - 1] = "0"
             }
             else if (conversão2 == "NaN") {
-                valoresRes[i + 1] = 1
+                valoresRes[i + 1] = 0
             }
 
             valoresRes[i + 1] = Number(valoresRes[i - 1]) + Number(valoresRes[i + 1])
@@ -210,10 +210,10 @@ function adicaoEsubtração(resultado, newarray) {
             conversão2 = String(pos2)
 
             if (conversão1 == "NaN") {
-                valoresRes[i - 1] = "1"
+                valoresRes[i - 1] = "0"
             }
             else if (conversão2 == "NaN") {
-                valoresRes[i + 1] = 1
+                valoresRes[i + 1] = 0
             }
 
 
