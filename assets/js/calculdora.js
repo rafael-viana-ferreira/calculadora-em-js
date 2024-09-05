@@ -19,6 +19,16 @@ function inserir(caracteres) {
     if (numeroCaracteres == 0) {
         document.getElementById("botao_apagar").innerHTML = "AC"
     }
+
+
+    let tratarErros = document.getElementById("resultado").value
+    erroTrue = Number.isNaN(tratarErros)
+
+
+    if (erroTrue == true) {
+        document.getElementById("resultado").innerHTML = "erroooo"
+    }
+
 }
 
 
@@ -107,6 +117,20 @@ function multiplicaçãoEdivisão(val) {
     let newarray
     for (let i = 0; i < resultado.length; i++) {
         if (resultado[i] == "*") {
+
+            let pos1 = Number(resultado[i - 1])
+            let pos2 = Number(resultado[i + 1])
+            let conversão1, conversão2
+            conversão1 = String(pos1)
+            conversão2 = String(pos2)
+
+            if (conversão1 == "NaN") {
+                resultado[i - 1] = "1"
+            }
+            else if (conversão2 == "NaN") {
+                resultado[i + 1] = 1
+            }
+
             resultado[i + 1] = resultado[i - 1] * resultado[i + 1]
             resultado[i] = ""
             resultado[i - 1] = ""
@@ -117,16 +141,29 @@ function multiplicaçãoEdivisão(val) {
             if (((resultado[i - 1] == 0) || (resultado[i - 1] == "0")) || (resultado[i + 1] == 0) || (resultado[i + 1] == "0")) {
                 document.getElementById("resultado").innerHTML = "Não é possivel dividir por 0"
             }
-            else if ((resultado[i + 1] == 0) || (resultado[i + 1] == "0")) {
+            else if ((resultado[i + 1] == 0) || (resultado[i + 1] == "0.0.0")) {
                 document.getElementById("resultado").innerHTML = "Não é possivel dividir por 0"
             }
             else {
+
+                let pos1 = Number(resultado[i - 1])
+                let pos2 = Number(resultado[i + 1])
+                let conversão1, conversão2
+                conversão1 = String(pos1)
+                conversão2 = String(pos2)
+
+                if (conversão1 == "NaN") {
+                    resultado[i - 1] = "1"
+                }
+                else if (conversão2 == "NaN") {
+                    resultado[i + 1] = 1
+                }
+
                 resultado[i + 1] = resultado[i - 1] / resultado[i + 1]
                 resultado[i] = ""
                 resultado[i - 1] = ""
                 document.getElementById("resultado").innerHTML = resultado[i + 1]
             }
-
         }
         else {
             adicaoEsubtração(resultado)
@@ -145,14 +182,45 @@ function adicaoEsubtração(resultado, newarray) {
 
     for (let i = 0; i < valoresRes.length; i++) {
         if (valoresRes[i] == "+") {
+
+            let pos1 = Number(valoresRes[i - 1])
+            let pos2 = Number(valoresRes[i + 1])
+            let conversão1, conversão2
+            conversão1 = String(pos1)
+            conversão2 = String(pos2)
+
+            if (conversão1 == "NaN") {
+                valoresRes[i - 1] = "1"
+            }
+            else if (conversão2 == "NaN") {
+                valoresRes[i + 1] = 1
+            }
+
             valoresRes[i + 1] = Number(valoresRes[i - 1]) + Number(valoresRes[i + 1])
             soma = valoresRes[i + 1]
             document.getElementById("resultado").innerHTML = soma;
+            console.log("area adição", soma)
         }
         else if (valoresRes[i] == "-") {
+
+            let pos1 = Number(valoresRes[i - 1])
+            let pos2 = Number(valoresRes[i + 1])
+            let conversão1, conversão2
+            conversão1 = String(pos1)
+            conversão2 = String(pos2)
+
+            if (conversão1 == "NaN") {
+                valoresRes[i - 1] = "1"
+            }
+            else if (conversão2 == "NaN") {
+                valoresRes[i + 1] = 1
+            }
+
+
             valoresRes[i + 1] = Number(valoresRes[i - 1]) - Number(valoresRes[i + 1])
             soma = valoresRes[i + 1]
             document.getElementById("resultado").innerHTML = soma;
+            console.log("area subtração", soma)
         }
     }
 }
